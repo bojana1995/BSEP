@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://xml/web-services" targetNamespace="http://xml/web-services"
+	elementFormDefault="qualified">
+
+    <xs:include schemaLocation="accomodation.xsd"/>
+    <xs:complexType name="review">
+        <xs:sequence>
+        	<xs:element name="id" type="xs:long"/>
+        	<xs:element name="userId" type="xs:long"/>
+        	<xs:element name="serverId" type="xs:long"/>
+        	<xs:element name="accomodation" type="tns:accomodation" />
+            <xs:element name="grade" type="xs:int"/>
+            <xs:element name="comment" type="xs:string"/>
+            <xs:element name="allowed" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:element name="GetReviewsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="agentUsername" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetReviewsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reviews" type="tns:review" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

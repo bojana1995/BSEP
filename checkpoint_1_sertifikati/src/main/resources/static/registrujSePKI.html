@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Registracija</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>		
+	</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="index.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Pocetna">
+				        </div>
+			        </form>
+			        <form action="prijaviSePKI.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Prijavi se">
+				        </div>
+				  	</form>
+			    </div>
+  			</div>
+		</div>
+
+	
+		<div class="container">  
+   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Registracija</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                		<form id="formaRegistrujSe" class="form-horizontal" enctype="multipart/form-data" method="POST">
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        		<input type="email" class="form-control" name="email" value="" placeholder="E-mail adresa">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        		<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" name="lozinka1" placeholder=Lozinka>
+                    		</div> 
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        		<input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" name="lozinka2" placeholder="Ponovo unesite lozinku">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        		<input type="text" class="form-control" name="ime" placeholder="Ime">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        		<input type="text" class="form-control" name="prezime" placeholder="Prezime">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        		<input type="text" class="form-control" name="adresa" placeholder="Adresa">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                        		<input type="text" class="form-control" name="brojTelefona" placeholder="Broj telefona">
+                    		</div>
+                    		
+                    		<label>Odaberite sigurnosno pitanje na koje želite da odgovorite:</label>
+							<div class="radio">
+								<label><input type="radio" name="optradio" checked="checked">Kako se zvala Vaša prva simpatija?</label>
+							</div>
+							<div class="radio">
+							  	<label><input type="radio" name="optradio">Kako se prezivao nastavnik koji Vam je dao prvu lošu ocenu u osnovnoj školi?</label>
+							</div>
+							<div class="radio disabled">
+							  	<label><input type="radio" name="optradio">Koji je bio nadimak Vašeg najboljeg druga u osnovnoj školi?</label>
+							</div>
+							
+							<div class="input-group" style="margin-top: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="text" class="form-control" name="odgovorNaSigurnosnoPitanje" placeholder="Odgovor na sigurnosno pitanje">
+                    		</div>
+                    		              
+                    		<div id="divValidacija"></div>  
+                    		                                                                 
+                    		<div class="form-group">
+                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                            		<input id="dugmeRegistrujSe" type="button" class="btn btn-info" style="float:right" value="Registruj se"> 	
+                            	</div>
+                    		</div>
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>			
+		<script type="text/javascript">	
+			$("#dugmeRegistrujSe").click(function(){
+				var provera = true;
+				var forma = $('form[id="formaRegistrujSe"]');
+				var email = forma.find('[name=email]').val();
+				var lozinka1 = forma.find('[name=lozinka1]').val();
+				var lozinka2 = forma.find('[name=lozinka2]').val();
+				var ime = forma.find('[name=ime]').val();
+				var prezime = forma.find('[name=prezime]').val();
+				var adresa = forma.find('[name=adresa]').val();
+				var brojTelefona = forma.find('[name=brojTelefona]').val();
+				var odgovorNaSigurnosnoPitanje = forma.find('[name=odgovorNaSigurnosnoPitanje]').val();
+				
+				//provera za sigurnosno pitanje
+				if(!odgovorNaSigurnosnoPitanje) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate odgovoriti na sigurnosno pitanje.</p>');
+					provera = false;
+				}
+				
+				//provera za broj telefona
+				if(isNaN(brojTelefona)) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Broj telefona moze sadrzati samo cifre.</p>');
+					provera = false;
+				}
+				if(!brojTelefona) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti broj telefona.</p>');
+					provera = false;
+				}	
+				
+				//provera za adresu
+				if(!adresa) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti adresu.</p>');
+					provera = false;
+				}
+				
+				//provera za prezime
+				var prezimeRegex = /^[a-zA-Z\s]+$/;
+				if(prezime.length > 15 || prezime.length <4 || (!prezimeRegex.test(prezime))){
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti prezime u ispravnom formatu.</p>');
+					provera = false;
+				}
+				if(!prezime) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti prezime.</p>');
+					provera = false;
+				}	
+				
+				//provera za ime
+				var imeRegex = /^[a-zA-Z\s]+$/;
+				if(ime.length > 15 || ime.length <3 || (!imeRegex.test(ime))){
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti ime u ispravnom formatu.</p>');
+					provera = false;
+				}
+				if(!ime) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti ime.</p>');
+					provera = false;
+				}	
+				
+				//provera za obe lozinke
+				if(lozinka1 != lozinka2) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Lozinka mora biti ista u oba polja.</p>');
+					provera = false;
+				}
+				
+				//provera za lozinku2
+				var lozinkaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,30}/;
+				if(lozinka2.length > 30 || lozinka2.length<10 || !isNaN(lozinka2) || (!lozinkaRegex.test(lozinka2))){
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Ponovo morate uneti lozinku, u ispravnom formatu.</p>');
+					provera = false;
+				}
+				if(!lozinka2) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Ponovo morate uneti lozinku.</p>');
+					provera = false;
+				}
+				
+				//provera za lozinku1
+				if(lozinka1.length > 30 || lozinka1.length<10 || !isNaN(lozinka1) || (!lozinkaRegex.test(lozinka1))){
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti lozinku u ispravnom formatu.</p>');
+					provera = false;
+				}
+				if(!lozinka1) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti lozinku.</p>');
+					provera = false;
+				}
+				
+				//provera za email adresu
+				var emailRegex = /^[a-zA-Z]+[0-9a-zA-Z.!#$_*]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+/;
+				if(email.length > 50 || email.length <4 || (!emailRegex.test(email))){
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti e-mail adresu u ispravnom formatu.</p>');
+					provera = false;
+				}
+				if(!email) {
+					$('#divValidacija').empty();
+					$('#divValidacija').append('<p style="color:red">Morate uneti e-mail adresu.</p>');
+					provera = false;
+				}
+				
+				
+				if(provera) {
+					$('#divValidacija').empty();
+					
+					formData = JSON.stringify({
+						email:$("#formaRegistrujSe [name='email']").val(),
+						lozinka:$("#formaRegistrujSe [name='lozinka1']").val(),
+						ime:$("#formaRegistrujSe [name='ime']").val(),
+						prezime:$("#formaRegistrujSe [name='prezime']").val(),
+						adresa:$("#formaRegistrujSe [name='adresa']").val(),
+						brojTelefona:$("#formaRegistrujSe [name='brojTelefona']").val(),
+						odgovorNaSigurnosnoPitanje:$("#formaRegistrujSe [name='odgovorNaSigurnosnoPitanje']").val()
+					   });
+					
+					$.ajax({
+						url: "http://localhost:9080/korisnik/registracija",
+						type: "POST",
+						data: formData,
+						contentType: "application/json",
+						datatype: 'json',
+						success: function(data){
+							if(data){
+								location.href = "http://localhost:9080/index.html"				
+							}else
+								alert("Registracija NIJE uspela.");
+						},
+						error: function(data){
+							alert('GRESKA PRILIKOM REGISTRACIJE!!!')
+						}
+					});
+				}
+			});
+		</script>				
+	</body>
+</html>

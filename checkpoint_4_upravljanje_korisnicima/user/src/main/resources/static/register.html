@@ -1,0 +1,246 @@
+<html>
+<head>
+
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+	
+	<!-- JQuery link -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<style>
+	body{
+		background: #2c3e50;
+	}
+	
+	</style>
+<head>
+
+<body>
+	<script>
+		$(document).ready(function(){
+			$("#submitButton").click(function(){
+				var val = true;
+				var username = $("#username").val();
+				var password = $("#password1").val();
+				var password2 = $("#password2").val();
+				var name = $("#name").val();
+				var surname = $("#surname").val();
+				var email = $("#email").val();
+				
+				name = name.trim();
+				surname = surname.trim();
+				
+				//provera za username
+				if(username.length<4 || username.length >15 || username.trim() == "" || parseInt(username[0])){
+					$("#rusernamespan").html("Invalid username (min length: 4, max length: 15).");
+					$("#rusernamespan").css("font-size","15px");
+					$("#username").css("border","2px solid red");
+					$("#username").val("");
+					$("#rusernamespan").show(500);
+					val = false;						
+				}else{
+					$("#username").css("border","2px solid green");
+					$("#rusernamespan").hide(500);						
+				}
+				
+				//provera za password1
+				var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{10,30}/;
+				if(password.length > 30 || password.length<10 || !isNaN(password) || (!passwordRegex.test(password))
+				   || password == "123456" || password == "password" || password == "12345678" || password == "qwerty" || password == "12345" || 
+					  password == "123456789" || password == "letmein" || password == "1234567" || password == "football" || password == "iloveyou" || 
+					  password == "admin" || password == "welcome" || password == "monkey" || password == "login" || password == "abc123" || 
+					  password == "starwars" || password == "123123" || password == "dragon" || password == "passw0rd" || password == "master" || 
+					  password == "hello" || password == "freedom" || password == "whatever" || password == "qazwsx" || password == "trustno1" || 
+					  password == "123456789@Bs"){
+					$("#rpassword1span").html("Invalid password (use min 10 and max 30 characters, at least one uppercase letter, one lowercase letter, one number and one special character; you can not select the password that is in the list of most frequently used passwords).");
+					$("#rpassword1span").css("font-size","15px");
+					$("#password1").css("border","2px solid red");
+					$("#password1").val("");
+					$("#rpassword1span").show(500);
+					val = false;
+				}else{
+					$("#password1").css("border","2px solid green");
+					$("#rpassword1span").hide(500);
+				}
+				
+				//provera za password2
+				if(password2.length > 30 || password2.length<10 || !isNaN(password2) || (!passwordRegex.test(password2))
+				   || password2 == "123456" || password2 == "password" || password2 == "12345678" || password2 == "qwerty" || password2 == "12345" || 
+					  password2 == "123456789" || password2 == "letmein" || password2 == "1234567" || password2 == "football" || password2 == "iloveyou" || 
+					  password2 == "admin" || password2 == "welcome" || password2 == "monkey" || password2 == "login" || password2 == "abc123" || 
+					  password2 == "starwars" || password2 == "123123" || password2 == "dragon" || password2 == "passw0rd" || password2 == "master" || 
+					  password2 == "hello" || password2 == "freedom" || password2 == "whatever" || password2 == "qazwsx" || password2 == "trustno1" || 
+					  password2 == "123456789@Bs"){
+					$("#rpassword2span").html("Invalid password confirmation (use min 10 and max 30 characters, at least one uppercase letter, one lowercase letter, one number and one special character; you can not select the password that is in the list of most frequently used passwords).");
+					$("#rpassword2span").css("font-size","15px");
+					$("#password2").css("border","2px solid red");
+					$("#password2").val("");
+					$("#rpassword2span").show(500);
+					val = false;
+				}else{
+					$("#password2").css("border","2px solid green");
+					$("#rpassword2span").hide(500);
+				}
+				
+				//provera za oba passworda
+				if(password != password2){
+					$("#rpassword2span").html("Invalid password confirmation (both passwords must be the same).");
+					$("#rpassword2span").css("font-size","15px");
+					$("#password2").css("border","2px solid red");
+					$("#password2").val("");
+					$("#rpassword2span").show(500);
+					val = false;
+				}
+				
+				//provera za name
+				var namereg = /^[a-zA-Z\s]+$/;
+				if(name.length > 15 || name.length <4 || (!namereg.test(name))){
+					$("#rnamespan").html("Invalid name.");
+					$("#rnamespan").css("font-size","15px");
+					$("#name").css("border","2px solid red");
+					$("#name").val("");
+					$("#rnamespan").show(500);
+					val = false;
+				}else{
+					$("#name").css("border","2px solid green");
+					$("#rnamespan").hide(500);
+				}
+				
+				//provera za surname
+				var surnamereg = /^[a-zA-Z\s]+$/;
+				if(surname.length > 15 || surname.length <4 || (!surnamereg.test(surname))){
+					$("#rsurnamespan").html("Invalid surname.");
+					$("#rsurnamespan").css("font-size","15px");
+					$("#surname").css("border","2px solid red");
+					$("#surname").val("");
+					$("#rsurnamespan").show(500);
+					val = false;
+				}else{
+					$("#surname").css("border","2px solid green");
+					$("#rsurnamespan").hide(500);
+				}
+								
+				//provera za email
+				var emailreg = /^[a-zA-Z]+[0-9a-zA-Z.!#$_*]+[@][0-9a-zA-Z]+[.][0-9a-zA-Z]+/;
+				if(email.length > 50 || email.length <4 || (!emailreg.test(email))){
+					$("#remailspan").html("Invalid email adress.");
+					$("#remailspan").css("font-size","15px");
+					$("#email").css("border","2px solid red");
+					$("#email").val("");
+					$("#remailspan").show(500);
+					val = false;
+				}else{
+					$("#email").css("border","2px solid green");
+					$("#remailspan").hide(500);
+				}
+				
+				if (val) {
+					var user = {
+							username: $("#username").val(),
+							password: $("#password1").val(),
+							email: $("#email").val(),
+							firstName: $("#name").val(),
+							lastName: $("#surname").val(),
+					}
+					
+					$.ajax({
+						url:'http://localhost:8090/user/register',
+						type:'post',
+						crossDomain: true,
+				        xhrFields: {
+				            withCredentials: true
+				         },
+				        headers: {  'Access-Control-Allow-Origin': '*' },
+						data: JSON.stringify(user),
+						contentType:"application/json",
+						dataType:"json",
+						complete:function(data, textStatus){
+							var d = data.status;
+							if (d == 201){
+								window.location.href="/";				
+							}else if(d == 400) {
+							}
+						},
+						error:function(){}
+					 });
+				}
+				return val; 
+			});
+		});
+	
+	</script>
+
+        <div class="modal show">
+			<div class="modal-dialog">
+				<div  class="modal-content">
+					<div class="modal-header">
+						<h1 class="text-center">Registration</h1>
+					</div>
+					<div class="modal-body">
+						<form id="registerform">
+							
+							<div class="form-group">
+								<input type="text" name="username" id="username" class="form-control input-sm" placeholder="Username">
+								<span id="rusernamespan" style="display:none;color:red;"></span>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="password" name="password1" id="password1" class="form-control input-sm" placeholder="Password">
+										 <span id="rpassword1span" style="display:none;color:red;"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="password" name="password2" id="password2" class="form-control input-sm" placeholder="Confirm Password">
+										<span id="rpassword2span" style="display:none;color:red;"></span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email Address">
+								<span id="remailspan" style="display:none;color:red;"></span>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="name" id="name" class="form-control input-sm" placeholder="First Name">
+										 <span id="rnamespan" style="display:none;color:red;"></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" name="surname" id="surname" class="form-control input-sm" placeholder="Last Name">
+										<span id="rsurnamespan" style="display:none;color:red;"></span>
+									</div>
+								</div>
+							</div>
+							
+						</form>
+						<button id="submitButton" value="Register" class="btn btn-primary btn-lg btn-block">Register</button>
+					</div>
+					
+					<div class="modal-footer">
+						<div class="col-md-1">
+							<a href="/">Home</a>	
+						</div>
+						<div class="col-md-offset-9 col-md-1">
+							<a href="login.html">Login</a>
+						</div>	
+					</div>
+	    		</div>
+    		</div>
+    	</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<html>
+<head>
+
+<head>
+	<title>Admin</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+	
+	<!-- JQuery link -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	
+	<style>
+	body{
+		background: #2c3e50;
+	}
+	
+	</style>
+	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url:'http://localhost:8090/user/account?u=admin',
+				type:'get',
+				crossDomain: true,
+		        xhrFields: {
+		            withCredentials: true
+		         },
+		        headers: {  'Access-Control-Allow-Origin': '*' },
+				async:false,
+				complete:function(data, textStatus){
+					var d = data.status;
+					if (d == 200){
+					}else if(d == 404) {
+						window.location.href="/";
+					}
+				},
+				error:function(){}
+			 });
+			$("#submitButton").click(function(){
+				var username = $("#username").val();
+				var as = {
+				 		value: $("#value").val(),
+						
+				}
+				
+				$.ajax({
+					url:'http://localhost:8090/accomodation-category',
+					type:'post',
+					crossDomain: true,
+			        xhrFields: {
+			            withCredentials: true
+			         },
+			        headers: {  'Access-Control-Allow-Origin': '*' },
+					data: JSON.stringify(as),
+					contentType:"application/json",
+					dataType:"json",
+					complete:function(data, textStatus){
+						var d = data.status;
+						if (d == 201){
+							window.location.href="/accomodation-category.html";				
+						}else if(d == 400) {
+							// bad request
+						}
+					},
+					error:function(){}
+				 }); 
+			});
+		});
+	</script>
+
+
+<head>
+<body>
+
+        <div class="modal show">
+			<div class="modal-dialog">
+				<div  class="modal-content">
+					<div class="modal-header">
+						<h1 class="text-center">Create Accomodation Category</h1>
+					</div>
+					<div class="modal-body">
+						<form id="registerform">
+							<div class="form-group">
+								<input type="number" name="value" id="value" class="form-control input-sm" placeholder="Accomodation Category Value">
+							</div>
+						</form>
+						<button id="submitButton" value="Add" class="btn btn-primary btn-lg btn-block">Save</button>
+					</div>
+					
+					<div class="modal-footer">
+						<div class="col-md-3">
+							<a href="/accomodation-category.html">Accomodation Categories</a>	
+						</div>
+					</div>
+	    		</div>
+    		</div>
+    	</div>
+</body>
+</html>

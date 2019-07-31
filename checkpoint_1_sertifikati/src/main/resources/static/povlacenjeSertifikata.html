@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Povlacenje sertifikata</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script>
+		$(document).ready(
+				function() {
+				$("#btnPovuci").click(
+						function() {
+							var provera = true;
+							var forma = $('form[id="formaPovlacenje"]');
+							var serialNum = forma.find('[name=serialNum]').val();
+							
+							if(!serialNum) {
+								$('#divValidacija').empty();
+								$('#divValidacija').append('<p style="color:red">Morate uneti serijski broj sertifikata.</p>');
+								provera = false;
+							}
+							
+							if(provera){
+								$('#divValidacija').empty();
+								
+								formData = JSON.stringify({
+									serialNum : $("#formaPovlacenje [name='serialNum']").val(),
+								});
+								
+								$.ajax({
+									url : "/certificate/povuciSertifikat",
+									type : "POST",
+									data : formData,
+									contentType : "application/json",
+									success : function(data) {
+										alert('Sertifikat je uspesno povucen.');
+										location.href = "http://localhost:9080/pocetnaPKIPrijavljenAdmin.html"
+									},
+									error : function(data) {
+										alert('GRESKA: nije moguce povuci odabrani sertifikat!');
+									}
+								});
+							}
+						});
+				});
+		</script>
+	</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="pocetnaPKIPrijavljenAdmin.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Nazad">
+				        </div>
+			        </form>
+			    </div>
+  			</div>
+		</div>
+	
+		<div class="container">  
+   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Povlacenje sertifikata</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                		<form id="formaPovlacenje" class="form-horizontal" enctype="multipart/form-data" method="POST">                    		                    		                    		                   		                   		                    		                   		                   		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        		<input type="number" class="form-control" name="serialNum" placeholder="Unesite serijski broj sertifikata">
+                    		</div>
+                    		
+                    		<div id="divValidacija"></div>  
+
+							<div class="form-group">
+                        		<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                            		<input id="btnPovuci" type="button" class="btn btn-info" style="float:right" value="Povuci sertifikat"> 	
+                            	</div>
+                    		</div>
+                		</form>
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>
+	</body>
+</html>

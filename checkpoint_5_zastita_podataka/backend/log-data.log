@@ -1,0 +1,52 @@
+2018-06-30 00:10:37.895  INFO 70676 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno se ulogovao admin: admin1, Sat Jun 30 00:10:37 CEST 2018
+2018-06-30 00:10:38.261  INFO 70676 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Trenutno je prijavljen admin: admin1, Sat Jun 30 00:10:38 CEST 2018
+2018-06-30 00:11:29.494  INFO 70676 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: user1, Sat Jun 30 00:11:29 CEST 2018
+2018-06-30 00:11:29.816  INFO 70676 --- [https-jsse-nio-8443-exec-2] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 00:11:29 CEST 2018
+2018-06-30 00:15:35.367  INFO 75708 --- [https-jsse-nio-8443-exec-10] xml.controller.UserController            : Uspesno se ulogovao admin: admin1, Sat Jun 30 00:15:35 CEST 2018
+2018-06-30 00:15:35.736  INFO 75708 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Trenutno je prijavljen admin: admin1, Sat Jun 30 00:15:35 CEST 2018
+2018-06-30 00:16:05.875  INFO 75708 --- [https-jsse-nio-8443-exec-8] xml.controller.UserController            : Blokiran korisnik sa id-jem: 56, Sat Jun 30 00:16:05 CEST 2018
+2018-06-30 00:16:10.878  INFO 75708 --- [https-jsse-nio-8443-exec-5] xml.controller.UserController            : Uspesno se izlogovao admin: admin1, Sat Jun 30 00:16:10 CEST 2018
+2018-06-30 10:37:38.187  INFO 10696 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno se ulogovao admin: admin1, Sat Jun 30 10:37:38 CEST 2018
+2018-06-30 10:37:38.829  INFO 10696 --- [https-jsse-nio-8443-exec-9] xml.controller.UserController            : Trenutno je prijavljen admin: admin1, Sat Jun 30 10:37:38 CEST 2018
+2018-06-30 10:37:58.811  INFO 10696 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno se izlogovao admin: admin1, Sat Jun 30 10:37:58 CEST 2018
+2018-06-30 10:38:25.784  INFO 10696 --- [https-jsse-nio-8443-exec-6] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: user1, Sat Jun 30 10:38:25 CEST 2018
+2018-06-30 10:38:26.353  INFO 10696 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 10:38:26 CEST 2018
+2018-06-30 10:39:46.269  INFO 10696 --- [https-jsse-nio-8443-exec-10] xml.controller.UserController            : Uspesno se izlogovao obican korisnik: user1, Sat Jun 30 10:39:46 CEST 2018
+2018-06-30 10:40:45.576  INFO 10696 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Uspesna registracija obicnog korisnika: korisnik1, Sat Jun 30 10:40:45 CEST 2018
+2018-06-30 10:42:20.229  INFO 10696 --- [https-jsse-nio-8443-exec-2] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: korisnik1, Sat Jun 30 10:42:20 CEST 2018
+2018-06-30 10:42:20.518  INFO 10696 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: korisnik1, Sat Jun 30 10:42:20 CEST 2018
+2018-06-30 11:24:38.546  INFO 4496 --- [https-jsse-nio-8443-exec-9] xml.controller.UserController            : Uspesno se ulogovao admin: admin1, Sat Jun 30 11:24:38 CEST 2018
+2018-06-30 11:24:39.005  INFO 4496 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Trenutno je prijavljen admin: admin1, Sat Jun 30 11:24:39 CEST 2018
+2018-06-30 11:25:10.733  INFO 4496 --- [https-jsse-nio-8443-exec-9] xml.controller.UserController            : Uspesno se izlogovao admin: admin1, Sat Jun 30 11:25:10 CEST 2018
+2018-06-30 11:26:02.310  INFO 4496 --- [https-jsse-nio-8443-exec-8] xml.controller.UserController            : Uspesno je aktiviran korisnicki nalog: korisnik1=, Sat Jun 30 11:26:02 CEST 2018
+2018-06-30 11:29:13.275  INFO 4496 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno je aktiviran korisnicki nalog: korisnik1=, Sat Jun 30 11:29:13 CEST 2018
+2018-06-30 11:34:02.796  INFO 10028 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Uspesno je aktiviran korisnicki nalog: korisnik1=, Sat Jun 30 11:34:02 CEST 2018
+2018-06-30 11:35:18.154  INFO 10028 --- [https-jsse-nio-8443-exec-10] xml.controller.UserController            : Uspesno je promenjen password: korisnik1, Sat Jun 30 11:35:18 CEST 2018
+2018-06-30 11:43:11.112  INFO 18320 --- [https-jsse-nio-8443-exec-7] xml.controller.UserController            : Uspesno je aktiviran korisnicki nalog: korisnik1=, Sat Jun 30 11:43:11 CEST 2018
+2018-06-30 11:43:48.292  INFO 18320 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Uspesno je promenjen password: korisnik1, Sat Jun 30 11:43:48 CEST 2018
+2018-06-30 11:44:25.108  INFO 18320 --- [https-jsse-nio-8443-exec-7] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: korisnik1, Sat Jun 30 11:44:25 CEST 2018
+2018-06-30 11:44:25.414  INFO 18320 --- [https-jsse-nio-8443-exec-2] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: korisnik1, Sat Jun 30 11:44:25 CEST 2018
+2018-06-30 12:21:32.515  WARN 18320 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m45s978ms636µs119ns).
+2018-06-30 12:52:27.515  WARN 18320 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=25m54s749ms882µs724ns).
+2018-06-30 12:55:41.334  INFO 22848 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Uspesno se ulogovao admin: admin1, Sat Jun 30 12:55:41 CEST 2018
+2018-06-30 12:55:42.076  INFO 22848 --- [https-jsse-nio-8443-exec-9] xml.controller.UserController            : Trenutno je prijavljen admin: admin1, Sat Jun 30 12:55:42 CEST 2018
+2018-06-30 12:56:23.951  INFO 22848 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Uspesno se izlogovao admin: admin1, Sat Jun 30 12:56:23 CEST 2018
+2018-06-30 12:56:48.729  INFO 22848 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: user1, Sat Jun 30 12:56:48 CEST 2018
+2018-06-30 12:56:49.221  INFO 22848 --- [https-jsse-nio-8443-exec-7] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 12:56:49 CEST 2018
+2018-06-30 12:56:52.443  INFO 22848 --- [https-jsse-nio-8443-exec-8] xml.controller.UserController            : Uspesno se izlogovao obican korisnik: user1, Sat Jun 30 12:56:52 CEST 2018
+2018-06-30 12:59:09.682  INFO 22848 --- [https-jsse-nio-8443-exec-7] xml.controller.UserController            : Uspesna registracija obicnog korisnika: korisnik2, Sat Jun 30 12:59:09 CEST 2018
+2018-06-30 13:01:29.367  INFO 22412 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Uspesno se ulogovao admin: admin1, Sat Jun 30 13:01:29 CEST 2018
+2018-06-30 13:01:29.865  INFO 22412 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Trenutno je prijavljen admin: admin1, Sat Jun 30 13:01:29 CEST 2018
+2018-06-30 13:01:37.560  INFO 22412 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Odobrena aktivacija korisnickog naloga sa id-jem: 58=, Sat Jun 30 13:01:37 CEST 2018
+2018-06-30 13:01:41.298  INFO 22412 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Uspesno se izlogovao admin: admin1, Sat Jun 30 13:01:41 CEST 2018
+2018-06-30 13:06:39.524  INFO 16704 --- [https-jsse-nio-8443-exec-8] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: user1, Sat Jun 30 13:06:39 CEST 2018
+2018-06-30 13:06:39.931  INFO 16704 --- [https-jsse-nio-8443-exec-5] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 13:06:39 CEST 2018
+2018-06-30 13:06:57.536  INFO 16704 --- [https-jsse-nio-8443-exec-4] xml.controller.UserController            : Uspesno je aktiviran korisnicki nalog: korisnik2=, Sat Jun 30 13:06:57 CEST 2018
+2018-06-30 13:06:57.981  INFO 16704 --- [https-jsse-nio-8443-exec-2] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 13:06:57 CEST 2018
+2018-06-30 13:07:57.560  INFO 16704 --- [https-jsse-nio-8443-exec-3] xml.controller.UserController            : Uspesno je promenjen password: korisnik1, Sat Jun 30 13:07:57 CEST 2018
+2018-06-30 13:07:58.001  INFO 16704 --- [https-jsse-nio-8443-exec-2] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 13:07:58 CEST 2018
+2018-06-30 13:08:06.503  INFO 16704 --- [https-jsse-nio-8443-exec-8] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 13:08:06 CEST 2018
+2018-06-30 13:08:14.637  INFO 16704 --- [https-jsse-nio-8443-exec-9] xml.controller.UserController            : Uspesno se izlogovao obican korisnik: user1, Sat Jun 30 13:08:14 CEST 2018
+2018-06-30 13:10:34.386  INFO 21924 --- [https-jsse-nio-8443-exec-6] xml.controller.UserController            : Uspesno se ulogovao obican korisnik: user1, Sat Jun 30 13:10:34 CEST 2018
+2018-06-30 13:10:34.870  INFO 21924 --- [https-jsse-nio-8443-exec-1] xml.controller.UserController            : Trenutno je prijavljen obican korisnik: user1, Sat Jun 30 13:10:34 CEST 2018
+2018-06-30 13:10:45.327  INFO 21924 --- [https-jsse-nio-8443-exec-10] xml.controller.UserController            : Uspesno se izlogovao obican korisnik: user1, Sat Jun 30 13:10:45 CEST 2018

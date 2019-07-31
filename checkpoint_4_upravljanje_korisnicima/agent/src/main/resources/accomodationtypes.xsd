@@ -1,0 +1,27 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://xml/web-services"
+           targetNamespace="http://xml/web-services" elementFormDefault="qualified">
+
+    <xs:element name="GetAccomodationTypeRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAccomodationTypeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="accomodation-type" type="tns:accomodation-type" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="accomodation-type">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+</xs:schema>

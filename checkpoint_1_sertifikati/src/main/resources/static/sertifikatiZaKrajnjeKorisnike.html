@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sertifikati za krajnje korisnike</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(
+				function() {
+					$.ajax({
+						type : 'GET',
+						url : "/keystore/getKeystores",
+						contentType : 'application/json',
+						dataType : "json",
+						success : function(data) {
+							$("#fileName").empty();
+							var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
+							var keystores = $("#fileName");
+							$.each(list, function(index, aliases) {
+								var li = $('<option value="'+aliases+'">' + aliases + ' </option>');
+								$(keystores).append(li);								
+							});
+						},
+						error : function() {
+							alert("GRESKA: neuspesno ucitavanje postojecih keystore-ova!");
+						}
+					});
+					
+					
+					$.ajax({
+						type : 'GET',
+						url : "/certificate/preuzmiPotpisnike",
+						contentType : 'application/json',
+						dataType : "json",
+						success : function(data) {
+							$("#potpisnik").empty();
+							var list = data == null ? [] : (data instanceof Array ? data : [ data ]);
+							var keystores = $("#potpisnik");
+							$.each(list, function(index, aliases) {
+								var li = $('<option value="'+aliases+'">' + aliases + ' </option>');
+								$(keystores).append(li);
+							});
+						},
+						error : function() {
+							alert("GRESKA: nije moguce preuzeti sertifikate potpisnike!");
+						}
+					});
+					
+					
+					$("#generisiKK").click(function(){
+						izabraniKS = $("#fileName option:selected").text();
+						
+						var provera = true;
+						var forma = $('form[id="formaKK"]');
+						var ksPassword = forma.find('[name=ksPassword]').val();
+						var commonName = forma.find('[name=commonName]').val();
+						var alias = forma.find('[name=alias]').val();
+						var orgName = forma.find('[name=orgName]').val();
+						var orgUnit = forma.find('[name=orgUnit]').val();
+						var country = forma.find('[name=country]').val();
+						var email = forma.find('[name=email]').val();
+						var serialNum = forma.find('[name=serialNum]').val();
+						var purpose = forma.find('[name=purpose]').val();
+						var validity = forma.find('[name=validity]').val();
+						
+						if(!email) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti email adresu.</p>');
+							provera = false;
+						}
+						if(!validity) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti broj dana validnosti (trajanja) sertifikata.</p>');
+							provera = false;
+						}
+						if(!purpose) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti svrhu sertifikata.</p>');
+							provera = false;
+						}
+						if(!serialNum) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti serijski broj.</p>');
+							provera = false;
+						}
+						if(!country) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti drzavu.</p>');
+							provera = false;
+						}
+						if(!orgUnit) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti organizacionu jedinicu.</p>');
+							provera = false;
+						}
+						if(!orgName) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti ime organizacije.</p>');
+							provera = false;
+						}
+						if(!alias) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti alias.</p>');
+							provera = false;
+						}
+						if(!commonName) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti naziv.</p>');
+							provera = false;
+						}
+						if(!ksPassword) {
+							$('#divValidacija').empty();
+							$('#divValidacija').append('<p style="color:red">Morate uneti lozinku.</p>');
+							provera = false;
+						}
+						
+						if(provera){
+							$('#divValidacija').empty();
+							
+							formData = JSON.stringify({
+								ksName:izabraniKS,
+			    	            ksPassword:$("#formaKK [name='ksPassword']").val(),
+		    	                commonName:$("#formaKK [name='commonName']").val(),
+		    	                alias:$("#formaKK [name='alias']").val(),
+		    	                orgName:$("#formaKK [name='orgName']").val(),
+		    	                orgUnit:$("#formaKK [name='orgUnit']").val(),
+		    	                country:$("#formaKK [name='country']").val(),
+		    	                email:$("#formaKK [name='email']").val(),
+		    	                serialNum:$("#formaKK [name='serialNum']").val(),
+		    	                purpose:$("#formaKK [name='purpose']").val(),
+		    	                validity:$("#formaKK [name='validity']").val()     
+		    	            });
+							
+							$.ajax({
+								url: "/certificate/generisiKK",
+								type: "POST",
+								data: formData,
+								contentType: "application/json",
+								success: function() {
+									alert('Uspesno generisan sertifikat za krajnje korisnike.');
+									location.href = "http://localhost:9080/pocetnaPKIPrijavljenAgent.html"
+								},
+								error : function() {
+									alert('GRESKA: nije moguce generisati sertifikat za krajnje korisnike!');
+								}
+							});
+						}
+					});
+				});
+		</script>	
+	</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+  			<div class="col-lg-6 col-lg-3">
+			    <div class="form-group">
+			    	<form action="pocetnaPKIPrijavljenAgent.html" class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input class="btn btn-link" type="submit" value="Nazad">
+				        </div>
+			        </form>
+			    </div>
+  			</div>
+		</div>
+	
+		<div class="container">  
+   			<div style="margin-top:20px;" class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7"> 
+        		<div class="panel panel-info" >
+            		<div class="panel-heading">
+                		<div class="panel-title text-center">Sertifikat za krajnje korisnike</div>
+            		</div>
+            		  
+            		<div class="panel-body" style="padding-top:30px">
+            			<div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                		<form id="formaKK" class="form-horizontal">
+                    		
+                    		
+                    		<div class="form-group col-lg-12"  style="margin-bottom: 25px">
+								<label>Odaberite keystore:</label> 
+								<select class="form-control" id="fileName"></select>
+							</div>
+							
+							<div class="input-group" style="margin-bottom: 65px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        		<input type="password" class="form-control" name="ksPassword" value="" placeholder="Lozinka za keystore">
+                    		</div>
+                    		
+                    		<div class="form-group col-lg-12"  style="margin-bottom: 65px">
+								<label>Odaberite sertifikat potpisnik:</label> 
+								<select class="form-control" id="potpisnik"></select>
+							</div>
+							
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="text" class="form-control" name="commonName" placeholder="Naziv sertifikata">
+                    		</div>
+                    		
+                    			<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="text" class="form-control" name="alias" placeholder="Alias">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="text" class="form-control" name="orgName" placeholder="Ime organizacije">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="text" class="form-control" name="orgUnit" placeholder="Organizaciona jednica">
+                    		</div>
+                    		       
+                    		 <div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-flag"></i></span>
+                        		<input type="text" class="form-control" name="country" placeholder="Drzava">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                        		<input type="number" class="form-control" name="serialNum" value="" placeholder="Serijski broj">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="text" class="form-control" name="purpose" placeholder="Svrha sertifikata">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        		<input type="number" class="form-control" name="validity" placeholder="Trajanje serftifikata (u danima)">
+                    		</div>
+                    		
+                    		<div class="input-group" style="margin-bottom: 25px">
+                        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        		<input type="text" class="form-control" name="email" placeholder="E-mail adresa">
+                    		</div>
+                    		
+                    		<div id="divValidacija"></div>                   
+                    		
+                        	<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+                            	<input id="generisiKK" class="btn btn-info" style="float:right" value="Generisi sertifikat"> 	
+                            </div>
+                    		
+                		</form>     
+            		</div>                     
+        		</div>  
+    		</div>
+		</div>
+	</body>
+</html>

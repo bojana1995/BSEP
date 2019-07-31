@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://xml/web-services" targetNamespace="http://xml/web-services"
+	elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="agent.xsd" />
+	
+	<xs:complexType name="Reply">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="msgId" type="xs:long" />
+			<xs:element name="agent" type="tns:agent" />
+			<xs:element name="replyContent" type="xs:string" />
+			<xs:element name="userId" type="xs:long" /> 
+		</xs:sequence>
+	</xs:complexType>
+	
+     <xs:element name="SendReplyResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SendReplyRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Reply" type="tns:Reply"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

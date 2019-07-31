@@ -1,0 +1,80 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://xml/web-services" targetNamespace="http://xml/web-services"
+	elementFormDefault="qualified">
+
+	
+	<xs:element name="GetReservationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetReservationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reservations" type="tns:reservation" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="SendReservationsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reservation" type="tns:reservation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="SendReservationsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:boolean"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="TryReservationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reservation" type="tns:reservation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="TryReservationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="reservationResponse" type="tns:reservation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    
+	<xs:include schemaLocation="agent.xsd" />
+	<xs:include schemaLocation="accomodation.xsd" />
+	<xs:complexType name="reservation">
+		<xs:sequence>
+			<xs:element name="agent" type="tns:agent" />
+			<xs:element name="accomodation" type="tns:accomodation" />
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="serverId" type="xs:long" />
+			<xs:element name="userId" type="xs:long" />
+			<xs:element name="numOfPersons">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0" />
+						<xs:pattern value="[0-9]+" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="accepted" type="xs:boolean" />
+			<xs:element name="price" type="xs:float"/>
+            <xs:element name="startDdate" type="xs:date"/>
+            <xs:element name="endDdate" type="xs:date"/>
+			
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

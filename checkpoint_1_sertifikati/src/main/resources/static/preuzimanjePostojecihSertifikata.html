@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Preuzimanje postojecih sertifikata</title>
+		<script src="scripts/jquery-3.2.1.min.js"></script>
+		<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		<script>
+			$(document).ready(
+				function() {
+					$("#preuzmiSertifikat").click(
+						function() {
+							var provera = true;
+							var forma = $('form[id="formaPreuzmiPostojece"]');
+							var serialNum = forma.find('[name=serialNum]').val();
+							
+							if(!serialNum) {
+								$('#divValidacija').empty();
+								$('#divValidacija').append('<p style="color:red">Morate uneti serijski broj sertifikata.</p>');
+								provera = false;
+							}
+							
+							if(provera){
+								$('#divValidacija').empty();
+								formData = JSON.stringify({
+									serialNum : $("#formaPreuzmiPostojece [name='serialNum']").val(),
+								});
+							
+								$.ajax({
+									url : "/certificate/preuzmiSertifikat",
+									type : "POST",
+									data : formData,
+									contentType : "application/json",
+									success : function(data) {
+										$('#modalniPreuzmiSertifikat').modal('toggle');
+																		
+										$("#serialNum").empty();
+										$("#isCA").empty();
+										$("#alias").empty();
+										$("#ksFileName").empty();
+										$("#status").empty();
+										$("#expDate").empty();
+										$("#version").empty();
+										$("#algorithm").empty();
+										$("#typeOfCertificate").empty();
+																		
+										$("#serialNum").append("<label>Serijski broj: </label><label id= \"serialNum\"> "+data.serialNum+"</label>");
+										$("#alias").append("<label>Alias: </label><label id= \"alias\"> "+data.alias+"</label>");
+										$("#ksFileName").append("<label>Naziv lokacije keystore-a: </label><label id= \"ksFileName\"> "+data.ksFileName+"</label>");
+										$("#status").append("<label>Sertifikat povucen: </label><label id= \"status\"> "+data.status+"</label>");
+										$("#expDate").append("<label>Vazi do: </label><label id= \"expDate\"> "+data.expDate+"</label>");
+										$("#version").append("<label>Verzija: </label><label id= \"version\"> "+data.version+"</label>");
+										$("#algorithm").append("<label>Algoritam koriscen za potpisivanje: </label><label id= \"algorithm\"> "+data.algorithm+"</label>");
+										$("#typeOfCertificate").append("<label>Tip sertifikata: </label><label id= \"typeOfCertificate\"> "+data.typeOfCertificate+"</label>");
+									}
+								});
+							}
+						});
+					});
+		</script>
+	</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+			<div class="col-lg-6 col-lg-3">
+				<div class="form-group">
+					<form action="pocetnaPKIPrijavljenObican.html" class="form-horizontal">
+						<div class="col-lg-4">
+							<input class="btn btn-link" type="submit" value="Nazad">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+		<div class="container">
+			<div style="margin-top: 20px;"
+				class="mainbox col-lg-6 col-lg-offset-3 col-lg-8 col-lg-offset-7">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="panel-title text-center">Preuzimanje postojeceg sertifikata</div>
+					</div>
+	
+					<div class="panel-body" style="padding-top: 30px">
+						<div style="display: none" id="login-alert"
+							class="alert alert-danger col-sm-12"></div>
+						<form id="formaPreuzmiPostojece" class="form-horizontal">
+							<div class="input-group" style="margin-bottom: 25px">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-th"></i></span> <input type="number"
+									class="form-control" name="serialNum"
+									placeholder="Unesite serijski broj sertifikata">
+							</div>
+	
+							<div id="divValidacija"></div> 
+	
+							<div class="col-lg-offset-3 col-lg-9" style="margin-top: 25px">
+								<input id="preuzmiSertifikat" class="btn btn-info"
+									style="float: right" value="Preuzmi sertifikat">
+							</div>
+	
+							<div class="modal fade" id="modalniPreuzmiSertifikat" tabindex="-1" role="dialog">
+								<div class="modal-dialog" role="document">
+    								<div class="modal-content">
+										<div class="modal-header">
+											<label><h3>Podaci o preuzetom sertifikatu</h3></label>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+										</div>
+										<div class="modal-body">
+											<div id = "serialNum" style="margin-bottom: 5px"></div>
+											<div id = "isCA" style="margin-bottom: 5px"></div>
+											<div id = "alias" style="margin-bottom: 5px"></div>
+											<div id = "ksFileName" style="margin-bottom: 5px"></div>
+											<div id = "status" style="margin-bottom: 5px"></div>
+											<div id = "expDate" style="margin-bottom: 5px"></div>
+											<div id = "version" style="margin-bottom: 5px"></div>
+											<div id = "algorithm" style="margin-bottom: 5px"></div>
+											<div id = "typeOfCertificate" style="margin-bottom: 5px"></div>
+										</div>
+										<div class="modal-footer">
+								        	<button type="button" class="btn btn-primary" data-dismiss="modal">Zatvori</button>
+								      	</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

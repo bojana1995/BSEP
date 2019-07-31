@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<title>Pocetna</title>
+			<script src="scripts/jquery-3.2.1.min.js"></script>
+			<link href="bootstrapB/css/bootstrap.css" rel="stylesheet" type="text/css" />
+			<script src="bootstrapB/js/bootstrap.js" type="text/javascript"></script>
+		</head>
+	
+	<body>
+		<div class="row">
+			<div class="col-lg-12 col-lg-9"></div>
+	  		<div class="col-lg-6 col-lg-2">
+				<div class="form-group">
+					<form action="index.html" class="form-horizontal">
+						<div class="col-lg-4">
+					    	<input class="btn btn-link" type="submit" value="Pocetna">
+					    </div>
+				    </form>
+				    <form class="form-horizontal">
+				        <div class="col-lg-4">
+				            <input id="dugmeOdjaviSe" class="btn btn-link" type="button" value="Odjavi se">
+				        </div>
+			        </form>
+				</div>
+	  		</div>
+		</div>
+	
+		<div class="container">
+			<div style="margin-top: 100px;" class="mainbox col-lg-9 col-lg-offset-2 col-lg-8 col-lg-offset-7">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<div class="panel-title text-center">PODSISTEM ZA UPRAVLJANJE KLJUCEVIMA - OBICAN</div>
+					</div>
+					
+					<form action="preuzimanjePostojecihSertifikata.html"
+						class="form-horizontal">
+						<div class="form-group">
+							<div class="col-lg-offset-3 col-lg-9">
+								<img src="slike/user.jpg" height="20" width="20"/>
+								<input type="submit" class="btn btn-link" style="float: center" value="4. Preuzimanje postojecih sertifikata">
+							</div>
+						</div>
+					</form>
+					
+					<form action="proveraStanjaSertifikata.html" class="form-horizontal">
+						<div class="form-group">
+							<div class="col-lg-offset-3 col-lg-9">
+								<img src="slike/user.jpg" height="20" width="20"/>
+								<input type="submit" class="btn btn-link" style="float: center" value="6. Provera stanja sertifikata (OCSP)">
+							</div>
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$("#dugmeOdjaviSe").click(function(){
+				$.ajax({
+					url : "http://localhost:9080/korisnik/odjava",
+					success: function(){
+						location.href = "http://localhost:9080/index.html"
+					},
+					error: function(){
+						alert('GRESKA PRILIKOM ODJAVE!!!')
+					}
+				})
+			});
+			
+			
+			$("#promeniLozinku").click(function(){
+				alert('TODO: promena lozinke')
+			});
+		</script>
+	</body>
+</html>

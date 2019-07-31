@@ -1,0 +1,15 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://xml/web-services" targetNamespace="http://xml/web-services"
+	elementFormDefault="qualified">
+
+	<xs:complexType name="agent">
+		<xs:sequence>
+			<xs:element name="username" type="xs:string" />
+			<xs:element name="password" type="xs:string" />
+			<xs:element name="firstName" type="xs:string" />
+			<xs:element name="lastName" type="xs:string" />
+			<xs:element name="businessID" type="xs:string" />
+			<xs:element name="id" type="xs:long" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

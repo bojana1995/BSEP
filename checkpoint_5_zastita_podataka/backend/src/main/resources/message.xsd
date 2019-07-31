@@ -1,0 +1,34 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://xml/web-services" targetNamespace="http://xml/web-services"
+	elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="agent.xsd" />
+	
+	<xs:complexType name="Message">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" />
+			<xs:element name="serverId" type="xs:long" />
+			<xs:element name="agent" type="tns:agent" />
+			<xs:element name="msgContent" type="xs:string" />
+			<xs:element name="userId" type="xs:long" /> 
+			<xs:element name="readStatus" type="xs:boolean" /> 
+		</xs:sequence>
+	</xs:complexType>
+	
+     <xs:element name="GetMessagesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetMessagesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Messages" type="tns:Message" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>
